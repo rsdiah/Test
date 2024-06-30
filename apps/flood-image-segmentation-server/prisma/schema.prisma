@@ -1,0 +1,26 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model SegmentationResult {
+  createdAt        DateTime  @default(now())
+  id               String    @id @default(cuid())
+  imageReference   String?
+  segmentationDate DateTime?
+  segmentedFile    Json?
+  updatedAt        DateTime  @updatedAt
+}
+
+model Image {
+  createdAt  DateTime  @default(now())
+  fileName   String?
+  id         String    @id @default(cuid())
+  imageFile  Json?
+  updatedAt  DateTime  @updatedAt
+  uploadDate DateTime?
+}
